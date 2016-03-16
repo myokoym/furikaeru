@@ -5,8 +5,9 @@ module Furikaeru
     include Base
 
     def edit(type_query)
-      last = last_path(type(type_query))
-      path = path(type(type_query))
+      type = type(type_query)
+      last = last_path(type)
+      path = path(type)
       if last && !File.file?(path)
         File.write(path, File.read(last))
       end
