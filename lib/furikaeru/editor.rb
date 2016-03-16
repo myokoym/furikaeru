@@ -10,6 +10,10 @@ module Furikaeru
       path = path(type)
       if last && !File.file?(path)
         File.write(path, File.read(last))
+        if type == "yesterday"
+          last_today = last_path("today")
+          File.write(path, File.read(last_today))
+        end
       end
       editor = `echo $EDITOR`.chomp
       system(editor, path)
